@@ -1,11 +1,10 @@
 "use client";
+import { getData } from "@/app/api/params/param";
 import React from "react";
-import { getDataBooking } from "@/app/api/params/param";
-
 export function AddTicketButton() {
   return (
     <>
-      <button onClick={getDataBooking} className='button_confirm'>
+      <button onClick={getData} className='button_confirm'>
         Bilet Al
       </button>
       {/* {isOpen && (
