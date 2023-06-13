@@ -62,7 +62,8 @@ class RequestFinishBasket {
     PRINTCHECK: number;
   };
 }
-let API_URL: "http://localhost:3004";
+let API_URL = "http://localhost:3004";
+let POSTMAN_API_URL = "http://api.getpostman.com";
 
 export async function postRequest(request: BaseRequest<any>) {
   try {
@@ -88,4 +89,47 @@ export async function postRequestFake(request: string) {
     error = new Error(error);
     throw error;
   }
+}
+
+export async function getHotelList() {
+  debugger;
+  const hotelList = [
+    {
+      site: "necim",
+      hotelId: "1234",
+      hotelName: "Necim Hotel",
+      primaryColor: "#22A699",
+    },
+    {
+      site: "tolga",
+      hotelId: "1235",
+      hotelName: "Tolga Hotel",
+      primaryColor: "#F2BE22",
+    },
+    {
+      site: "mehmet",
+      hotelId: "1236",
+      hotelName: "Mehmet Hotel",
+      primaryColor: "#F29727",
+    },
+  ];
+
+  var raw = "This is expected to be sent back as part of response body.";
+
+  const a = await fetch("https://postman-echo.com/post", {
+    method: "POST",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+      "Content-Type": "application/json",
+      "Postman-Token": "8b3553d8-b87b-47cc-8838-1c1849ff327f",
+      mode: "no-cors",
+    },
+    body: JSON.stringify({
+      hotelList,
+    }),
+  });
+  debugger;
+
+  console.log(a);
 }

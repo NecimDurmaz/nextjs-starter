@@ -1,4 +1,6 @@
 import React from "react";
+import style from "./style.module.scss";
+
 type Props = {
   siteName: string;
 };
@@ -6,7 +8,7 @@ type Props = {
 export default function Navbar({ siteName }: Props) {
   return (
     <>
-      <nav className='navbar navbar-expand-lg navbar-primary bg-primary'>
+      <nav className={` ${style.main} navbar navbar-expand-lg navbar-primary `}>
         <div className='container-fluid'>
           <button
             className='navbar-toggler'
@@ -65,44 +67,6 @@ export default function Navbar({ siteName }: Props) {
                 <li>
                   <a className='dropdown-item' href='#'>
                     Something else here
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className='dropdown'>
-              <a
-                className='dropdown-toggle d-flex align-items-center hidden-arrow'
-                href='#'
-                id='navbarDropdownMenuAvatar'
-                role='button'
-                data-mdb-toggle='dropdown'
-                aria-expanded='false'
-              >
-                <img
-                  src='https://mdbcdn.b-cdn.net/img/new/avatars/2.webp'
-                  className='rounded-circle'
-                  height='25'
-                  alt='Black and White Portrait of a Man'
-                  loading='lazy'
-                />
-              </a>
-              <ul
-                className='dropdown-menu dropdown-menu-end'
-                aria-labelledby='navbarDropdownMenuAvatar'
-              >
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    My profile
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Logout
                   </a>
                 </li>
               </ul>

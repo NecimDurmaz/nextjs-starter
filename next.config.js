@@ -17,7 +17,15 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.elektraweb.com",
+      },
+      {
+        protocol: "https",
         hostname: "elektrawebfiles.cdn.elektraweb.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.gstatic.com",
       },
     ],
   },

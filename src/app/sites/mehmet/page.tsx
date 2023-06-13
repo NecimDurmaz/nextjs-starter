@@ -18,7 +18,6 @@ export async function generateMetadata(
   const hotel = await postRequestFake("subdomains?site=" + subdomain);
 
   if (!hotel[0]?.hotelName) return { title: "404" };
-  console.log("hotelname", hotel[0].hotelName);
   return {
     title: hotel[0].hotelName,
   };
@@ -35,8 +34,12 @@ export default async function NecimPage({ params, searchParams }: Props) {
   if (!hotel) return notFound();
   return (
     <>
-      <LayoutWrapper title={hotel.hotelName}>
-        SlugPage {params.site} {saat}:{dakika}:{saniye}
+      <LayoutWrapper
+        title={hotel.hotelName}
+        favicon={hotel.FAVICON}
+        primaryColor={undefined}
+      >
+        OZELPAGE {params.site} {saat}:{dakika}:{saniye}
       </LayoutWrapper>
     </>
   );

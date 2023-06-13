@@ -11,7 +11,6 @@ interface IndexProps {
 }
 export default async function SitePage() {
   let asdx = await getLink();
-  console.log("params");
   return (
     <>
       <JsonPreview data={asdx.data} />

@@ -3,8 +3,6 @@ import React from "react";
 
 import style from "./style.module.scss";
 import ProductItemComponent from "../product-item/product-item";
-import JsonPreview from "@/components/(core)/JsonPreview";
-
 type Props = {
   hotelId: string;
 };

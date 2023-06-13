@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export const config = {
-  matcher: [
-    /*
-     * Match all paths except for:
-     * 1. /api routes
-     * 2. /_next (Next.js internals)
-     * 3. /examples (inside /public)
-     * 4. all root files inside /public (e.g. /favicon.ico)
-     */
-    "/((?!api/|_next/|_static/|examples/|[\\w-]+\\.\\w+).*)",
-  ],
-};
+// export const config = {
+//   matcher: [
+//     /*
+//      * Match all paths except for:
+//      * 1. /api routes
+//      * 2. /_next (Next.js internals)
+//      * 3. /examples (inside /public)
+//      * 4. all root files inside /public (e.g. /favicon.ico)
+//      */
+//     "/((?!api/|_next/|_static/|examples/|[\\w-]+\\.\\w+).*)",
+//   ],
+// };
 
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
@@ -26,16 +26,10 @@ export default async function middleware(req: NextRequest) {
 
   // rewrites for app pages
   if (currentHost == "app") {
-    if (
-      url.pathname === "/login" &&
-      (req.cookies.get("next-auth.session-token") ||
-        req.cookies.get("__Secure-next-auth.session-token"))
-    ) {
-      url.pathname = "/";
-      return NextResponse.redirect(url);
-    }
-
-    url.pathname = `/app${url.pathname}`;
+    url.pathname = `/`;
+    return NextResponse.rewrite(url);
+  } else if (currentHost == "home") {
+    url.pathname = `/home`;
     return NextResponse.rewrite(url);
   }
 
@@ -45,7 +39,43 @@ export default async function middleware(req: NextRequest) {
   }
 
   // rewrite everything else to `/_sites/[site] dynamic route
-  return NextResponse.rewrite(
-    new URL(`/sites/${currentHost}${path}?site=${currentHost}`, req.url)
-  );
+  if (path === "/") {
+    //
+    //
+    // http://necim.localhost:3000/
+    console.log("hotel");
+    url.pathname = `/sites/${currentHost}`;
+    url.searchParams.set("site", currentHost);
+    return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim?site=necim
+    //
+    //
+  } else if (path.split("/").length == 2) {
+    //
+    //
+    // http://necim.localhost:3000/departman
+    console.log("departman");
+    url.pathname = `sites/${currentHost}/departments/${path.slice(1)}`;
+    url.searchParams.set("site", currentHost);
+    return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim/departman?site=necim
+    //
+    //
+  } else if (path.split("/").length == 3) {
+    //
+    //
+    // http://necim.localhost:3000/departman/menu
+    console.log("menu");
+    var pathArray = path.slice(1).split("/");
+    url.pathname = `sites/${currentHost}/departments/${pathArray[0]}/menus/${pathArray[1]}`;
+    url.searchParams.set("site", currentHost);
+    return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim/departman/menu?site=necim
+    //
+    //
+  } else {
+    //
+    //
+    url.pathname = `/home`;
+    return NextResponse.rewrite(url);
+    //
+    //
+  }
 }

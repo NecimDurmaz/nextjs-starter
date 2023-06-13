@@ -13,7 +13,7 @@ export default function ProductItemComponent(product: any) {
       <div className='col-12 col-md-6 col-lg-4'>
         <div className={style.card}>
           <div className={style["card-image"]}>
-            <CoreImage image={image} />
+            {/* <CoreImage image={image} /> */}
           </div>
           <div className={style["card-text"]}>
             <p className={style["card-meal-type"]}>Hamburger </p>
