@@ -8,7 +8,9 @@ type Props = {
 export default function Navbar({ siteName }: Props) {
   return (
     <>
-      <nav className={` ${style.main} navbar navbar-expand-lg navbar-primary `}>
+      <nav
+        className={` ${style.main} navbar navbar-expand-lg navbar-primary bg-secondary `}
+      >
         <div className='container-fluid'>
           <button
             className='navbar-toggler'
