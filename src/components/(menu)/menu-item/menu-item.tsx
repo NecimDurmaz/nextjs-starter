@@ -1,12 +1,18 @@
 import JsonPreview from "@/components/(core)/JsonPreview";
+import ProductItemComponent from "@/components/(product)/product-item/product-item";
 import Link from "next/link";
 import React from "react";
 export default function MenuItemComponent({ menu }) {
   return (
     <>
-      <h1 style={{ fontSize: "50px", marginBottom: "10px" }}>
-        <Link href={`/${menu.name}`}>{menu.name}</Link>
-      </h1>
+      <JsonPreview data={menu} />
+      <div className='row'>
+        {/* {menu.products.map((product) => {
+          <div className='col-4'>
+            <ProductItemComponent product={product} />
+          </div>;
+        })} */}
+      </div>
     </>
   );
 }

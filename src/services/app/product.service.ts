@@ -1,3 +1,5 @@
+import { getProductList } from "../core/api.service";
+
 export function groupByProduct(productList: any) {
   //productList altindaki tum urunleri siteye gore gruplayip sitenin alt dizisi olarak departmanlara gore gruplayip array olarak dondurur
 
@@ -34,4 +36,22 @@ export function groupByProduct(productList: any) {
   });
 
   return groupedProductList;
+}
+
+export async function getDepartmentProducts(site: string, department?: string) {
+  let departments = await getProductList();
+
+  let groupDepartments = await groupByProduct(departments);
+  const filterDepartments = groupDepartments.find((groupDepartment) => {
+    return groupDepartment.site == site;
+  });
+  if (department) {
+    const menus = filterDepartments.departments.find((groupDepartment) => {
+      return groupDepartment.department == department;
+    });
+
+    return menus;
+  } else {
+    return filterDepartments;
+  }
 }

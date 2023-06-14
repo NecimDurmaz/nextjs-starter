@@ -1,12 +1,18 @@
 "use client";
-import { getHotelList } from "@/services/core/api.service";
 import React from "react";
-export function AddTicketButton() {
+export function AddTicketButton({ product }) {
+  const store = useStore();
   return (
     <>
-      <button className='button_confirm' onClick={getHotelList}>
-        Bilet Al
+      <button
+        className='button_confirm'
+        style={{ marginTop: "20px" }}
+        onClick={addTicket}
+      >
+        Sepete Ekle
       </button>
     </>
   );
 }
+
+function addTicket() {}

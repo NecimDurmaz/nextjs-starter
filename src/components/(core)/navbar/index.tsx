@@ -26,7 +26,7 @@ export default function Navbar({ siteName }: Props) {
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <a className='navbar-brand mt-2 mt-lg-0' href='#'>
-              <h2 style={{ color: "red" }}> {siteName}</h2>
+              <h2> {siteName}</h2>
             </a>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>

@@ -4,12 +4,12 @@ import style from "./style.module.scss";
 import DepartmentItemComponent from "../department-item/department-item";
 import JsonPreview from "@/components/(core)/JsonPreview";
 type Props = {
-  departments: any;
+  menus: any;
 };
-export default async function DepartmentListComponent({ departments }: Props) {
+export default async function DepartmentListComponent({ menus }: Props) {
   return (
     <div className='container'>
-      {departments.map((department, index) => {
+      {menus.products.map((department, index) => {
         return <DepartmentItemComponent department={department} />;
       })}
     </div>

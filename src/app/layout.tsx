@@ -5,7 +5,14 @@ import "@/styles/reset.scss";
 import { Roboto } from "next/font/google";
 
 const RootLayout = async ({ children }) => {
-  return <>{children}</>;
+  return (
+    <>
+      <html>
+        <head></head>
+        <body>{children}</body>
+      </html>
+    </>
+  );
 };
 
 export default RootLayout;

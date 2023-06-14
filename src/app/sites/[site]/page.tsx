@@ -1,3 +1,4 @@
+import JsonPreview from "@/components/(core)/JsonPreview";
 import DepartmentListComponent from "@/components/(department)/department-list/department-list";
 import ProductList from "@/components/(product)/product-list/product-list";
 import LayoutWrapper from "@/containers/layout/LayoutWrapper";
@@ -7,6 +8,7 @@ import {
   getProductList,
 } from "@/services/core/api.service";
 import { ResolvingMetadata, Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 type Props = {
   params: { site: string };
@@ -44,11 +46,9 @@ export default async function SlugPage({ params }: Props) {
     return hotel.site == params.site;
   });
   // const deneme = await getHotelList();
-  console.log(hotel);
   if (!hotel) {
     return notFound();
   }
-  console.log("hotel");
 
   let departments = await getProductList();
   let newDepartments = await groupByProduct(departments);
@@ -63,7 +63,14 @@ export default async function SlugPage({ params }: Props) {
         favicon={hotel?.FAVICON}
         primaryColor={hotel?.primaryColor}
       >
-        <DepartmentListComponent departments={filterDepartments} />
+        {/* <JsonPreview data={filterDepartments} /> */}
+        {filterDepartments.map((department) => {
+          return (
+            <Link href={"/" + department.department}>
+              <h1 style={{ fontSize: "50px" }}> {department.department} </h1>
+            </Link>
+          );
+        })}
       </LayoutWrapper>
     </>
   );

@@ -5,7 +5,9 @@ export default function DepartmentItemComponent({ department }) {
   return (
     <>
       <h1 style={{ fontSize: "50px", marginBottom: "10px" }}>
-        <Link href={`/${department.department}`}>{department.department}</Link>
+        <Link href={`/${department.department}/${department.menu}`}>
+          {department.menu}
+        </Link>
       </h1>
     </>
   );

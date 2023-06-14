@@ -45,9 +45,19 @@ export default async function middleware(req: NextRequest) {
   }
 
   // rewrite everything else to `/_sites/[site] dynamic rout;
+
   const yellow = "\x1b[33m";
   const reset = "\x1b[0m";
+  const bgCyan = "\x1b[46m";
+  const white = "\x1b[37m";
 
+  console.log("\n");
+  console.log(
+    bgCyan +
+      white +
+      "------------------------------------------------------------------------------------------------------------" +
+      reset
+  );
   console.log("\n");
   console.log(yellow + "path", path + reset);
 
@@ -55,7 +65,7 @@ export default async function middleware(req: NextRequest) {
     url.pathname = `/sites/${currentHost}`;
     url.searchParams.set("site", currentHost);
 
-    // consoleLog("hotel", url);
+    consoleLog("hotel", url);
     return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim?site=necim
   } else if (path.split("/").length == 2) {
     //
@@ -64,10 +74,9 @@ export default async function middleware(req: NextRequest) {
 
     url.pathname = `sites/${currentHost}/departments/${path.slice(1)}`;
     url.searchParams.set("site", currentHost);
-    // consoleLog("department", url);
+    url.searchParams.set("department", path.slice(1));
+    consoleLog("department", url);
     return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim/departman?site=necim
-    //
-    //
   } else if (path.split("/").length == 3) {
     //
     //
@@ -76,8 +85,9 @@ export default async function middleware(req: NextRequest) {
     var pathArray = path.slice(1).split("/");
     url.pathname = `sites/${currentHost}/departments/${pathArray[0]}/menus/${pathArray[1]}`;
     url.searchParams.set("site", currentHost);
-
-    // consoleLog("menu", url);
+    url.searchParams.set("department", pathArray[0]);
+    url.searchParams.set("menu", pathArray[1]);
+    consoleLog("menu", url);
     return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim/departman/menu?site=necim
     //
     //
@@ -92,26 +102,24 @@ export default async function middleware(req: NextRequest) {
   // else if (path.split("/").length == 3)
 }
 
-// function consoleLog(string, url) {
-//   const yellow = "\x1b[33m";
-//   const reset = "\x1b[0m";
+function consoleLog(string, url) {
+  const yellow = "\x1b[33m";
+  const reset = "\x1b[0m";
+  const bgCyan = "\x1b[46m";
+  const white = "\x1b[37m";
 
-//   console.log(
-//     yellow +
-//       "------------------------------------------------------------------------------------------------------------" +
-//       reset
-//   );
-//   console.log("\n");
+  console.log("\n");
 
-//   console.log(yellow + "MIDDLEWARE " + string + reset);
-//   console.log("\n");
-//   console.log(yellow + "rewrite -> " + url + reset);
-//   console.log("\n");
-//   console.log(
-//     yellow +
-//       "------------------------------------------------------------------------------------------------------------" +
-//       reset
-//   );
+  console.log(yellow + "MIDDLEWARE " + string + reset);
+  console.log("\n");
+  console.log(yellow + "rewrite -> " + url + reset);
+  console.log("\n");
+  console.log(
+    bgCyan +
+      white +
+      "------------------------------------------------------------------------------------------------------------" +
+      reset
+  );
 
-//   console.log("\n");
-// }
+  console.log("\n");
+}
