@@ -3,9 +3,23 @@ import "@/styles/variables.module.scss";
 import "@/styles/global.scss";
 import "@/styles/reset.scss";
 import { getHotelListPostMan } from "@/services/core/api.service";
+import BasketContainer from "@/components/(core)/basket/basket";
+import Navbar from "@/components/(core)/navbar";
 
-const RootLayout = async ({ children }) => {
-  return <> {children}</>;
+const RootLayout = async ({ children, params }) => {
+  return (
+    <>
+      <div className='row'>
+        <div className='col-12'>
+          <Navbar siteName={params.title} />
+        </div>
+        <div className='col-8'>{children}</div>
+        <div className='col-4'>
+          <BasketContainer />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default RootLayout;

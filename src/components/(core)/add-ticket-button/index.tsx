@@ -1,4 +1,5 @@
 "use client";
+import useStore from "@/store";
 import React from "react";
 export function AddTicketButton({ product }) {
   const store = useStore();
@@ -7,7 +8,9 @@ export function AddTicketButton({ product }) {
       <button
         className='button_confirm'
         style={{ marginTop: "20px" }}
-        onClick={addTicket}
+        onClick={() => {
+          store.addBasket(product);
+        }}
       >
         Sepete Ekle
       </button>

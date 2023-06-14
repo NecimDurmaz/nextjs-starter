@@ -9,9 +9,15 @@ type Props = {
 export default async function DepartmentListComponent({ menus }: Props) {
   return (
     <div className='container'>
-      {menus.products.map((department, index) => {
-        return <DepartmentItemComponent department={department} />;
-      })}
+      <div className='row'>
+        {menus.products.map((department, index) => {
+          return (
+            <div className='col-4'>
+              <DepartmentItemComponent department={department} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

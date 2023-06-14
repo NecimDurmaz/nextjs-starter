@@ -144,7 +144,7 @@ export async function getProductList() {
     {
       site: "tolga",
       department: "Lara",
-      menu: "Ogle",
+      menu: "Izgara",
       name: "Tavuk Şiş",
       description: "Taze tavuk etinden hazırlanan nefis bir şiş yemeği.",
       price: 40,
@@ -171,7 +171,7 @@ export async function getProductList() {
     {
       site: "tolga",
       department: "Kalkan",
-      menu: "Aksam",
+      menu: "Salata",
       name: "Yeşil Salata",
       description:
         "Taze yeşilliklerle hazırlanan hafif ve sağlıklı bir salata.",
@@ -199,7 +199,7 @@ export async function getProductList() {
     {
       site: "tolga",
       department: "Alanya",
-      menu: "Ogle",
+      menu: "Tatli",
       name: "Sütlaç",
       description: "Geleneksel Türk sütlaç tatlisının enfes lezzeti.",
       price: 12,
@@ -226,7 +226,7 @@ export async function getProductList() {
     {
       site: "tolga",
       department: "Konyaalti",
-      menu: "Aksam",
+      menu: "Atistirmalik",
       name: "Patates Kızartması",
       description:
         "Kıyır kıyır patates kızartmalarıyla nefis bir atıştırmalık.",
@@ -254,7 +254,7 @@ export async function getProductList() {
     {
       site: "tolga",
       department: "Kas",
-      menu: "Ogle",
+      menu: "Corba",
       name: "Düğün Corbası",
       description: "Lezzetli ve doyurucu bir etli Corba seçeneği.",
       price: 12,
@@ -263,19 +263,19 @@ export async function getProductList() {
     {
       site: "tolga",
       department: "Kas",
-      menu: "Ogle",
+      menu: "Yoresel",
       name: "Manti",
       description: "Lezzetli ve doyurucu bir etli Corba seçeneği.",
-      price: 12123,
+      price: 125,
       currency: "TRY",
     },
     {
       site: "tolga",
       department: "Kas",
-      menu: "Aksam",
-      name: "Manti",
+      menu: "Pizza",
+      name: "Peynirli Pizza",
       description: "Lezzetli ve doyurucu bir etli Corba seçeneği.",
-      price: 12123,
+      price: 850,
       currency: "TRY",
     },
     {
@@ -301,7 +301,7 @@ export async function getProductList() {
     {
       site: "tolga",
       department: "Alanya",
-      menu: "Aksam",
+      menu: "Tatli",
       name: "Profiterol",
       description: "Kremalı ve çikolatalı profiterol tatlisının enfes lezzeti.",
       price: 20,

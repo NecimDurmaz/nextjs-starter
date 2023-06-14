@@ -63,7 +63,6 @@ export default async function SlugPage({ params }: Props) {
         favicon={hotel?.FAVICON}
         primaryColor={hotel?.primaryColor}
       >
-        {/* <JsonPreview data={filterDepartments} /> */}
         {filterDepartments.map((department) => {
           return (
             <Link href={"/" + department.department}>

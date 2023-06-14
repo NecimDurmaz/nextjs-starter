@@ -1,11 +1,17 @@
 import React from "react";
 import style from "./style.module.scss";
+import NavbarBasketButtonComponent from "./navbar-basket-button/navbar-basket-button";
+import { fetchParams } from "@/utils/fetch-params";
+import JsonPreview from "../JsonPreview";
+import Link from "next/link";
 
 type Props = {
   siteName: string;
 };
 
-export default function Navbar({ siteName }: Props) {
+export default async function Navbar({ siteName }: Props) {
+  const param = await fetchParams();
+
   return (
     <>
       <nav
@@ -25,23 +31,15 @@ export default function Navbar({ siteName }: Props) {
           </button>
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-            <a className='navbar-brand mt-2 mt-lg-0' href='#'>
-              <h2> {siteName}</h2>
-            </a>
+            <div className='navbar-brand mt-2 mt-lg-0'>
+              <Link href='/'>
+                <h2 style={{ color: "red" }}>{param[1][0].NAME}</h2>
+              </Link>
+            </div>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
                 <a className='nav-link' href='#'>
-                  Dashboard
-                </a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link' href='#'>
-                  Team
-                </a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link' href='#'>
-                  Projects
+                  <NavbarBasketButtonComponent />
                 </a>
               </li>
             </ul>
