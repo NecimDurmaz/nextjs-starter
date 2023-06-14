@@ -78,58 +78,264 @@ export async function postRequest(request: BaseRequest<any>) {
     throw error;
   }
 }
-export async function postRequestFake(request: string) {
-  try {
-    let res = await fetch(`http://localhost:3004/${request}`, {
-      method: "GET",
-    });
+export async function postRequestPostMAN(data: any) {
+  var urlencoded = new URLSearchParams();
 
-    return res.json();
-  } catch (error) {
-    error = new Error(error);
-    throw error;
-  }
+  var requestOptions = {
+    method: "POST",
+    body: urlencoded,
+    redirect: "follow",
+  };
+  return await fetch("https://postman-echo.com/post", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.text())
+    .then((response) => {
+      return JSON.parse(response).data;
+    })
+    .catch((error) => console.log("error", error));
 }
 
-export async function getHotelList() {
-  debugger;
-  const hotelList = [
+export async function getHotelListPostMan() {
+  const subdomains = [
     {
       site: "necim",
       hotelId: "1234",
       hotelName: "Necim Hotel",
+      FAVICON:
+        "https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/favicon.ico",
       primaryColor: "#22A699",
     },
     {
       site: "tolga",
       hotelId: "1235",
       hotelName: "Tolga Hotel",
+      FAVICON:
+        "https://www.elektraweb.com/wp-content/uploads/2019/06/favicon.ico",
       primaryColor: "#F2BE22",
     },
     {
       site: "mehmet",
       hotelId: "1236",
       hotelName: "Mehmet Hotel",
+      FAVICON:
+        "https://www.elektraweb.com/wp-content/uploads/2019/06/favicon.ico",
       primaryColor: "#F29727",
     },
   ];
-
-  var raw = "This is expected to be sent back as part of response body.";
-
-  const a = await fetch("https://postman-echo.com/post", {
-    method: "POST",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-      "Content-Type": "application/json",
-      "Postman-Token": "8b3553d8-b87b-47cc-8838-1c1849ff327f",
-      mode: "no-cors",
+  const hotelList = await postRequestPostMAN(subdomains);
+  return hotelList;
+}
+export async function getProductList() {
+  const productList = [
+    {
+      site: "necim",
+      department: "Konyaalti",
+      menu: "Kahvaltı",
+      name: "Sucuklu Yumurta",
+      description: "Sucuklu ve baharatlı lezzetli bir kahvaltı seçeneği.",
+      price: 25,
+      currency: "TRY",
     },
-    body: JSON.stringify({
-      hotelList,
-    }),
-  });
-  debugger;
+    {
+      site: "tolga",
+      department: "Lara",
+      menu: "Ogle",
+      name: "Tavuk Şiş",
+      description: "Taze tavuk etinden hazırlanan nefis bir şiş yemeği.",
+      price: 40,
+      currency: "TRY",
+    },
+    {
+      site: "mehmet",
+      department: "Alanya",
+      menu: "Aksam",
+      name: "İrmik Helvası",
+      description: "Geleneksel Türk mutfağının vazgeçilmez tatlilarından biri.",
+      price: 15,
+      currency: "TRY",
+    },
+    {
+      site: "necim",
+      department: "Kas",
+      menu: "Ogle",
+      name: "Mercimek Corbası",
+      description: "Klasik ve besleyici bir Corba seçeneği.",
+      price: 10,
+      currency: "TRY",
+    },
+    {
+      site: "tolga",
+      department: "Kalkan",
+      menu: "Aksam",
+      name: "Yeşil Salata",
+      description:
+        "Taze yeşilliklerle hazırlanan hafif ve sağlıklı bir salata.",
+      price: 20,
+      currency: "TRY",
+    },
+    {
+      site: "mehmet",
+      department: "Konyaalti",
+      menu: "Ogle",
+      name: "Sigara Böreği",
+      description: "Kıyır kıyır böreklerle lezzetli bir aperatif seçeneği.",
+      price: 18,
+      currency: "TRY",
+    },
+    {
+      site: "necim",
+      department: "Lara",
+      menu: "Aksam",
+      name: "Izgara Köfte",
+      description: "Taze köfte ve sebzelerle hazırlanan nefis bir ana yemek.",
+      price: 30,
+      currency: "TRY",
+    },
+    {
+      site: "tolga",
+      department: "Alanya",
+      menu: "Ogle",
+      name: "Sütlaç",
+      description: "Geleneksel Türk sütlaç tatlisının enfes lezzeti.",
+      price: 12,
+      currency: "TRY",
+    },
+    {
+      site: "mehmet",
+      department: "Kas",
+      menu: "Aksam",
+      name: "Domates Corbası",
+      description: "Taze domateslerle hazırlanan nefis bir Corba.",
+      price: 10,
+      currency: "TRY",
+    },
+    {
+      site: "necim",
+      department: "Kalkan",
+      menu: "Ogle",
+      name: "Cevizli Roka Salatası",
+      description: "Taze roka yaprakları ve cevizle lezzetli bir salata.",
+      price: 22,
+      currency: "TRY",
+    },
+    {
+      site: "tolga",
+      department: "Konyaalti",
+      menu: "Aksam",
+      name: "Patates Kızartması",
+      description:
+        "Kıyır kıyır patates kızartmalarıyla nefis bir atıştırmalık.",
+      price: 15,
+      currency: "TRY",
+    },
+    {
+      site: "mehmet",
+      department: "Lara",
+      menu: "Ogle",
+      name: "Mantar Sote",
+      description: "Taze mantarlarla hazırlanan lezzetli bir sote yemeği.",
+      price: 28,
+      currency: "TRY",
+    },
+    {
+      site: "necim",
+      department: "Alanya",
+      menu: "Aksam",
+      name: "Kadayıf",
+      description: "Tatli ve şerbetli kadayıf tatlisının muhteşem tadı.",
+      price: 18,
+      currency: "TRY",
+    },
+    {
+      site: "tolga",
+      department: "Kas",
+      menu: "Ogle",
+      name: "Düğün Corbası",
+      description: "Lezzetli ve doyurucu bir etli Corba seçeneği.",
+      price: 12,
+      currency: "TRY",
+    },
+    {
+      site: "mehmet",
+      department: "Kalkan",
+      menu: "Aksam",
+      name: "Tabule Salatası",
+      description:
+        "Naneli ve taze sebzelerle zenginleştirilmiş sağlıklı bir salata.",
+      price: 25,
+      currency: "TRY",
+    },
+    {
+      site: "necim",
+      department: "Lara",
+      menu: "Ogle",
+      name: "Mantı",
+      description:
+        "Türk mutfağının vazgeçilmez lezzetlerinden biri olan mantı.",
+      price: 35,
+      currency: "TRY",
+    },
+    {
+      site: "tolga",
+      department: "Alanya",
+      menu: "Aksam",
+      name: "Profiterol",
+      description: "Kremalı ve çikolatalı profiterol tatlisının enfes lezzeti.",
+      price: 20,
+      currency: "TRY",
+    },
+    {
+      site: "mehmet",
+      department: "Kas",
+      menu: "Ogle",
+      name: "Ezogelin Corbası",
+      description: "Nefis ve baharatlı bir Türk Corba klasiği.",
+      price: 10,
+      currency: "TRY",
+    },
+    {
+      site: "necim",
+      department: "Kalkan",
+      menu: "Aksam",
+      name: "Coban Salatası",
+      description: "Taze sebzelerle hazırlanan geleneksel Türk salatası.",
+      price: 20,
+      currency: "TRY",
+    },
+    {
+      site: "tolga",
+      department: "Konyaalti",
+      menu: "Ogle",
+      name: "Peynir Tabak",
+      description: "Çeşitli peynirlerle hazırlanan lezzetli bir atıştırmalık.",
+      price: 18,
+      currency: "TRY",
+    },
+    {
+      site: "mehmet",
+      department: "Lara",
+      menu: "Aksam",
+      name: "Balık Izgara",
+      description: "Taze balıkların ızgarada pişirilmiş harika lezzeti.",
+      price: 45,
+      currency: "TRY",
+    },
+    {
+      site: "necim",
+      department: "Alanya",
+      menu: "Ogle",
+      name: "Süt Helvası",
+      description: "Lezzetli ve hafif bir süt helvası tatlisı.",
+      price: 14,
+      currency: "TRY",
+    },
+  ];
 
-  console.log(a);
+  const productListResp = await postRequestPostMAN(productList);
+  return productListResp;
 }

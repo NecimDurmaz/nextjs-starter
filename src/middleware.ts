@@ -43,21 +43,19 @@ export default async function middleware(req: NextRequest) {
   if (hostname === "localhost:3000" || hostname === "elektranext.online") {
     return NextResponse.rewrite(new URL(`/home${path}`, req.url));
   }
+
+  // rewrite everything else to `/_sites/[site] dynamic rout;
   const yellow = "\x1b[33m";
   const reset = "\x1b[0m";
 
-  // rewrite everything else to `/_sites/[site] dynamic rout;
   console.log("\n");
   console.log(yellow + "path", path + reset);
 
   if (path === "/") {
     url.pathname = `/sites/${currentHost}`;
     url.searchParams.set("site", currentHost);
-    console.log("\n");
-    console.log(yellow + "MIDDLEWARE hotel" + reset);
-    console.log("\n");
-    console.log(yellow + "rewrite -> " + url + reset);
-    console.log("\n");
+
+    // consoleLog("hotel", url);
     return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim?site=necim
   } else if (path.split("/").length == 2) {
     //
@@ -66,11 +64,7 @@ export default async function middleware(req: NextRequest) {
 
     url.pathname = `sites/${currentHost}/departments/${path.slice(1)}`;
     url.searchParams.set("site", currentHost);
-    console.log("\n");
-    console.log(yellow + "MIDDLEWARE departman" + reset);
-    console.log("\n");
-    console.log(yellow + "rewrite -> " + url + reset);
-    console.log("\n");
+    // consoleLog("department", url);
     return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim/departman?site=necim
     //
     //
@@ -82,11 +76,8 @@ export default async function middleware(req: NextRequest) {
     var pathArray = path.slice(1).split("/");
     url.pathname = `sites/${currentHost}/departments/${pathArray[0]}/menus/${pathArray[1]}`;
     url.searchParams.set("site", currentHost);
-    console.log("\n");
-    console.log(yellow + "MIDDLEWARE menu" + reset);
-    console.log("\n");
-    console.log(yellow + "rewrite -> " + url + reset);
-    console.log("\n");
+
+    // consoleLog("menu", url);
     return NextResponse.rewrite(url); // http://necim.localhost:3000/sites/necim/departman/menu?site=necim
     //
     //
@@ -100,3 +91,27 @@ export default async function middleware(req: NextRequest) {
   }
   // else if (path.split("/").length == 3)
 }
+
+// function consoleLog(string, url) {
+//   const yellow = "\x1b[33m";
+//   const reset = "\x1b[0m";
+
+//   console.log(
+//     yellow +
+//       "------------------------------------------------------------------------------------------------------------" +
+//       reset
+//   );
+//   console.log("\n");
+
+//   console.log(yellow + "MIDDLEWARE " + string + reset);
+//   console.log("\n");
+//   console.log(yellow + "rewrite -> " + url + reset);
+//   console.log("\n");
+//   console.log(
+//     yellow +
+//       "------------------------------------------------------------------------------------------------------------" +
+//       reset
+//   );
+
+//   console.log("\n");
+// }

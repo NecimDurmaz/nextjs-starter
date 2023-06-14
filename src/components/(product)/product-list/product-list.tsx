@@ -1,4 +1,3 @@
-import { postRequestFake } from "@/services/core/api.service";
 import React from "react";
 
 import style from "./style.module.scss";
@@ -7,7 +6,7 @@ type Props = {
   hotelId: string;
 };
 export default async function ProductListComponent({ hotelId }: Props) {
-  const productList = await getProductList(hotelId);
+  const productList = [];
   return (
     <div className='container'>
       <div className={`${style.ProductListMain} row`}>
@@ -17,9 +16,4 @@ export default async function ProductListComponent({ hotelId }: Props) {
       </div>
     </div>
   );
-}
-
-async function getProductList(hotelId: string) {
-  const productList = await postRequestFake("products?hotelId=" + hotelId);
-  return productList;
 }

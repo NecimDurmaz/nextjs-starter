@@ -1,4 +1,7 @@
+"use client";
 import Navbar from "@/components/(core)/navbar";
+import Head from "next/head";
+import React from "react";
 
 export default function LayoutWrapper({
   children,
@@ -6,6 +9,20 @@ export default function LayoutWrapper({
   favicon,
   primaryColor,
 }) {
+  // children.map((element) => {
+  //   if (element.type === "button") {
+  //     return React.cloneElement(
+  //       element,
+  //       {
+  //         onClick: () => {
+  //           // additional props
+  //           alert("You are making progress!!!");
+  //         },
+  //       },
+  //       <>Styled button with onClick</>
+  //     );
+  //   }
+  // });
   return (
     <>
       <html>
@@ -31,6 +48,7 @@ export default function LayoutWrapper({
         </head>
         <body>
           <Navbar siteName={title} />
+          {/* <div> {children} </div> */}
           <div> {children} </div>
         </body>
       </html>
