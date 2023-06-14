@@ -13,7 +13,7 @@ export default async function SitePage() {
   let asdx = await getLink();
   return (
     <>
-      <JsonPreview data={asdx.data} />
+      {/* <JsonPreview data={asdx.data} /> */}
 
       <div>saasddsasdasdad</div>
     </>

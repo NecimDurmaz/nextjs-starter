@@ -31,6 +31,7 @@ export async function generateMetadata(
 }
 
 export default async function MenuPage({ params }) {
+  console.log("Menu");
   const menus = await getDepartmentProducts(params.site, params.department);
   const selectedMenus = menus.products.filter((p) => p.menu === params.menu);
   return (
@@ -39,7 +40,6 @@ export default async function MenuPage({ params }) {
       favicon={undefined}
       primaryColor={undefined}
     >
-      {/* <h1> {product.name}</h1> */}
       <MenuContainer menus={menus} selectedMenus={selectedMenus} />
       {/* <JsonPreview data={menus} /> */}
     </LayoutWrapper>

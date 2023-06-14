@@ -1,11 +1,14 @@
 import React from "react";
 import style from "./style.module.scss";
+import NavbarBasketButtonComponent from "./navbar-basket-button/navbar-basket-button";
+import JsonPreview from "../JsonPreview";
 
 type Props = {
   siteName: string;
+  param: any;
 };
 
-export default function Navbar({ siteName }: Props) {
+export default function Navbar({ siteName, param }: Props) {
   return (
     <>
       <nav
@@ -26,22 +29,12 @@ export default function Navbar({ siteName }: Props) {
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <a className='navbar-brand mt-2 mt-lg-0' href='#'>
-              <h2> {siteName}</h2>
+              <h2 style={{ color: "red" }}> {param[1][0].NAME} </h2>
             </a>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
                 <a className='nav-link' href='#'>
-                  Dashboard
-                </a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link' href='#'>
-                  Team
-                </a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link' href='#'>
-                  Projects
+                  <NavbarBasketButtonComponent param={param} />
                 </a>
               </li>
             </ul>

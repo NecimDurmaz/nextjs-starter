@@ -9,8 +9,6 @@ export default function LayoutWrapper({
 }) {
   return (
     <>
-      <Navbar siteName={title} />
-
       <div> {children} </div>
     </>
   );

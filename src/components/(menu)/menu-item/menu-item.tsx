@@ -5,7 +5,7 @@ import React from "react";
 export default function MenuItemComponent({ menu }) {
   return (
     <>
-      <JsonPreview data={menu} />
+      Menu Item
       <div className='row'>
         {/* {menu.products.map((product) => {
           <div className='col-4'>

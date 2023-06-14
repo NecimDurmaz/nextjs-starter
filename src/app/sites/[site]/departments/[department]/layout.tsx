@@ -3,12 +3,6 @@ import "@/styles/variables.module.scss";
 import "@/styles/global.scss";
 import "@/styles/reset.scss";
 import { getDepartmentProducts } from "@/services/app/product.service";
-
-// type Props = {
-//   params: { site: string; department: string };
-//   searchParams: { [key: string]: string | string[] | undefined };
-// };
-
 const RootLayout = async ({ children }) => {
   return <>{children}</>;
 };
